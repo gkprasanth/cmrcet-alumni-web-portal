@@ -1,18 +1,72 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { account } from "../utils/appwrite"; // Import your Appwrite instance
+import { useUserStore } from "../store/userStore"; // Zustand store
+
+// Function to check if the user is already logged in
+const checkSession = async () => {
+  try {
+    const currentUser = await account.get(); // Fetch the current user data
+    return currentUser;
+  } catch (err) {
+    console.error("Session check failed: ", err);
+    return null; // If session check fails, return null
+  }
+};
+
+// Function to log out the user and delete the session
+const logoutUser = async () => {
+  try {
+    await account.deleteSession("current"); // Delete current session
+    useUserStore.getState().clearUser(); // Clear user data from Zustand store
+    console.log("User logged out successfully.");
+  } catch (err) {
+    console.error("Logout failed: ", err); // Handle any logout errors
+  }
+};
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [error, setError] = useState(""); // State for error message
+  const navigate = useNavigate(); // Hook for navigation
+  const setUserDetails = useUserStore((state) => state.setUser);
 
+  // Handle input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  // Handle the form submission for login
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login Data: ", formData);
-    // Add logic to authenticate user
+    try {
+      // Check if the user is already logged in
+      const currentUser = await checkSession();
+      if (currentUser) {
+        // If the user is logged in, update the Zustand store
+        setUserDetails({
+          email: currentUser.email,
+          name: currentUser.name,
+          userId: currentUser.$id,
+        });
+        navigate("/"); // Navigate to the homepage
+        return;
+      }
+
+      // If no session, proceed with creating a new session
+      await account.createEmailPasswordSession(formData.email, formData.password);
+      const user = await account.get();
+      setUserDetails({
+        email: user.email,
+        name: user.name,
+        userId: user.$id,
+      });
+      navigate("/"); // Navigate to the home page after login
+    } catch (err) {
+      console.error(err); // Log the error for debugging
+      setError(err.message || "An error occurred. Please try again.");
+    }
   };
 
   return (
@@ -52,10 +106,14 @@ const Login = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300"
-          >
+          {/* Display error message */}
+          {error && (
+            <p className="mb-6 text-red-500 text-center font-medium">
+              {error}
+            </p>
+          )}
+
+          <button type="submit" className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
             Log In
           </button>
         </form>

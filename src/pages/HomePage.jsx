@@ -17,6 +17,8 @@ const HomePage = () => {
           autoPlay 
           showThumbs={false} 
           showStatus={false} 
+          stopOnHover={false}
+          
           className="w-full h-[500px]"
         >
           {[home1, home2, home2].map((image, index) => (

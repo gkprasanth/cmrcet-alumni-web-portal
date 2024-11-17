@@ -47,19 +47,19 @@ export const eventsData = [
   export const newsData = [
     {
       title: "New Campus Building Completed",
-      image: "/images/news1.jpg",
+      image: "/news1.jpeg",
       description: "The new science building has been completed...",
       link: "/news/1",
     },
     {
       title: "Alumni Meetup Event",
-      image: "/images/news2.jpg",
+      image: "/news2.jpg",
       description: "A successful alumni meetup was held this weekend...",
       link: "/news/2",
     },
     {
       title: "Student Achievements in National Competition",
-      image: "/images/news3.jpg",
+      image: "/news3.avif",
       description: "Our students have won several top prizes in national competitions...",
       link: "/news/3",
     },
