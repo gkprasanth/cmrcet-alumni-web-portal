@@ -70,7 +70,7 @@ const HomePage = () => {
       }
     };
 
-    fetchJobs();
+    // fetchJobs();
 
     const fetchEvents = async () => {
       try {
@@ -164,7 +164,7 @@ const HomePage = () => {
           </div>
           <Link
             to="/news"
-            className="inline-block mt-6 text-white bg-blue-600 px-6 py-3 rounded-lg hover:bg-blue-700"
+            className="inline-block mt-6 text-white bg-orange-600 px-6 py-3 rounded-lg hover:bg-blue-700"
           >
             View All News
           </Link>
@@ -206,7 +206,7 @@ const HomePage = () => {
           </div>
           <Link
             to="/events"
-            className="inline-block mt-6 text-white bg-blue-600 px-6 py-3 rounded-lg hover:bg-blue-700"
+            className="inline-block mt-6 text-white bg-orange-600 px-6 py-3 rounded-lg hover:bg-blue-700"
           >
             See More Events
           </Link>
@@ -231,7 +231,7 @@ const HomePage = () => {
         <div className="my-8">
           <h2 className="text-2xl font-bold mb-4">Latest Jobs</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {jobs.slice(0, 3).map((job, index) => (
+            {/* {jobs.slice(0, 3).map((job, index) => (
               <div key={index} className="bg-white shadow-lg rounded-lg p-6">
                 <img
                   src={job.organization_logo}
@@ -253,11 +253,13 @@ const HomePage = () => {
                   </Link>
                 </div>
               </div>
-            ))}
+            ))} */}
+
+            <p className="text-red-500" >Jobs fetching failed, try after some time!!</p>
           </div>
           <Link
             to="/jobs"
-            className="inline-block mt-6 text-white bg-blue-600 px-6 py-3 rounded-lg hover:bg-blue-700"
+            className="inline-block mt-6 text-white bg-orange-600 px-6 py-3 rounded-lg hover:bg-blue-700"
           >
             See All Jobs
           </Link>

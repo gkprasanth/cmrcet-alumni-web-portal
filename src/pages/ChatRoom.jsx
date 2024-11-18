@@ -109,7 +109,7 @@ const ChatRoom = () => {
                 <button
                     onClick={sendMessage}
                     
-                    className="bg-blue-500 text-white p-3 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 flex items-center justify-center"
+                    className="bg-orange-500 text-white p-3 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 flex items-center justify-center"
                 >
                     <FaPaperPlane size={20} />
                 </button>

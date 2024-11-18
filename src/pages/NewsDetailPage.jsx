@@ -14,8 +14,11 @@ const NewsDetailPage = () => {
     const fetchNewsDetail = async () => {
       try {
         // Fetch the news detail based on ID
-        const news = await fetchDocuments("6739a7360014e787cfad", "6739a74200018257a9fb", id);
-        setNewsDetail(news[0]); // Assuming `fetchDocuments` returns an array and the first item is the news
+        const news = await fetchDocuments("6739a7360014e787cfad", "6739a74200018257a9fb", );
+        setNewsDetail(news[id-1]); 
+        
+
+        // Assuming `fetchDocuments` returns an array and the first item is the news
       } catch (error) {
         setError("Failed to fetch news details.");
       } finally {
@@ -42,7 +45,7 @@ const NewsDetailPage = () => {
     <div className="max-w-7xl mx-auto px-6 my-8 bg-gray-50">
       <button
         onClick={() => navigate('/news')}
-        className="text-blue-500 mb-6 flex items-center transition-all duration-300 hover:text-blue-700"
+        className="text-orange-500 mb-6 flex items-center transition-all duration-300 hover:text-blue-700"
       >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 mr-2">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />

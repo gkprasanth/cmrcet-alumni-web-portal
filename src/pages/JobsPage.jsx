@@ -84,7 +84,7 @@ const JobPage = () => {
             <button
               onClick={handlePreviousPage}
               disabled={page === 1}
-              className="bg-blue-500 text-white py-2 px-6 rounded-full hover:bg-blue-600 disabled:bg-gray-300"
+              className="bg-orange-500 text-white py-2 px-6 rounded-full hover:bg-blue-600 disabled:bg-gray-300"
             >
               Previous
             </button>
@@ -94,7 +94,7 @@ const JobPage = () => {
             <button
               onClick={handleNextPage}
               disabled={page === totalPages}
-              className="bg-blue-500 text-white py-2 px-6 rounded-full hover:bg-blue-600 disabled:bg-gray-300"
+              className="bg-orange-500 text-white py-2 px-6 rounded-full hover:bg-blue-600 disabled:bg-gray-300"
             >
               Next
             </button>

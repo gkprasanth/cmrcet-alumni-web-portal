@@ -51,7 +51,7 @@ const RegisterModal = ({ isOpen, closeModal, onSubmit }) => {
           <div className="flex justify-between items-center">
             <button
               type="submit"
-              className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
+              className="bg-orange-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
             >
               Submit
             </button>
@@ -82,7 +82,10 @@ const EventDetailPage = () => {
       try {
         // Fetch the event detail based on ID
         const event = await fetchDocuments("6739a7360014e787cfad", "673ad9620001dd25a7f5", id);
-        setEventDetail(event[0]); // Assuming `fetchDocuments` returns an array and the first item is the event
+        setEventDetail(event[id - 1]);
+        
+        console.log(id)
+        // Assuming `fetchDocuments` returns an array and the first item is the event
       } catch (error) {
         setError("Failed to fetch event details.");
       } finally {
