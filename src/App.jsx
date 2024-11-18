@@ -22,6 +22,8 @@ const App = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+        document.cookie = "__vercel_live_token=value; path=/; SameSite=None; Secure";
+
     const fetchUser = async () => {
       try {
         const currentUser = await account.get(); // Get current logged-in user
