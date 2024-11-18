@@ -30,6 +30,7 @@ const HomePage = () => {
   const [eventsData, setEventsData] = useState([]);
   const [isLoadingNews, setIsLoadingNews] = useState(true);
   const [isLoadingEvents, setIsLoadingEvents] = useState(true);
+  const [jobs, setJobs] = useState([]);
 
   // Fetch news data
   useEffect(() => {
@@ -47,6 +48,29 @@ const HomePage = () => {
         setIsLoadingNews(false);
       }
     };
+
+
+
+    const fetchJobs = async () => {
+      const url = 'https://job-posting-feed-api.p.rapidapi.com/active-ats-meili?title_search=false&description_type=html';
+      const options = {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-key': '74e08c8d1dmshc3c3b3d2a461171p1baf7fjsnd8f3e40e57e1',
+          'x-rapidapi-host': 'job-posting-feed-api.p.rapidapi.com',
+        },
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        setJobs(data.hits); // Assuming `hits` contains the job data
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchJobs();
 
     const fetchEvents = async () => {
       try {
@@ -110,33 +134,33 @@ const HomePage = () => {
           <div className="grid md:grid-cols-3 gap-6">
             {isLoadingNews
               ? Array.from({ length: 3 }).map((_, index) => (
-                  <SkeletonCard key={index} />
-                ))
+                <SkeletonCard key={index} />
+              ))
               : newsData.map((news) => (
-                  <div
-                    key={news.$id}
-                    className="bg-white shadow-md rounded-lg overflow-hidden"
-                  >
-                    <img
-                      src={news.image || "https://via.placeholder.com/150"}
-                      alt={news.title || "News Image"}
-                      className="w-full h-48 object-cover"
-                    />
-                    <div className="p-4">
-                      <h3 className="text-xl font-semibold">{news.title}</h3>
-                      <p className="text-gray-600 mt-2">
-                        {news.description?.substring(0, 100)}...
-                      </p>
-                      <Link
-                        to={`/news/${news.$id}`}
-                        className="text-blue-500 hover:underline mt-2 inline-flex items-center"
-                        aria-label={`Read more about ${news.title}`}
-                      >
-                        Read More <FaArrowRight className="ml-1" />
-                      </Link>
-                    </div>
+                <div
+                  key={news.$id}
+                  className="bg-white shadow-md rounded-lg overflow-hidden"
+                >
+                  <img
+                    src={news.image || "https://via.placeholder.com/150"}
+                    alt={news.title || "News Image"}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-4">
+                    <h3 className="text-xl font-semibold">{news.title}</h3>
+                    <p className="text-gray-600 mt-2">
+                      {news.description?.substring(0, 100)}...
+                    </p>
+                    <Link
+                      to={`/news/${news.$id}`}
+                      className="text-blue-500 hover:underline mt-2 inline-flex items-center"
+                      aria-label={`Read more about ${news.title}`}
+                    >
+                      Read More <FaArrowRight className="ml-1" />
+                    </Link>
                   </div>
-                ))}
+                </div>
+              ))}
           </div>
           <Link
             to="/news"
@@ -152,33 +176,33 @@ const HomePage = () => {
           <div className="grid md:grid-cols-3 gap-6">
             {isLoadingEvents
               ? Array.from({ length: 3 }).map((_, index) => (
-                  <SkeletonCard key={index} />
-                ))
+                <SkeletonCard key={index} />
+              ))
               : eventsData.map((event) => (
-                  <div
-                    key={event.$id}
-                    className="bg-white shadow-md rounded-lg overflow-hidden"
-                  >
-                    <img
-                      src={event.image || "https://via.placeholder.com/150"}
-                      alt={event.title || "Event Image"}
-                      className="w-full h-48 object-cover"
-                    />
-                    <div className="p-4">
-                      <h3 className="text-xl font-semibold">{event.title}</h3>
-                      <p className="text-gray-600 mt-2 line-clamp-2">
-                        {event.description}
-                      </p>
-                      <Link
-                        to={`/events/${event.id}`}
-                        className="text-blue-500 hover:underline mt-2 inline-flex items-center"
-                        aria-label={`View details for ${event.title}`}
-                      >
-                        View Event <FaArrowRight className="ml-1" />
-                      </Link>
-                    </div>
+                <div
+                  key={event.$id}
+                  className="bg-white shadow-md rounded-lg overflow-hidden"
+                >
+                  <img
+                    src={event.image || "https://via.placeholder.com/150"}
+                    alt={event.title || "Event Image"}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-4">
+                    <h3 className="text-xl font-semibold">{event.title}</h3>
+                    <p className="text-gray-600 mt-2 line-clamp-2">
+                      {event.description}
+                    </p>
+                    <Link
+                      to={`/events/${event.id}`}
+                      className="text-blue-500 hover:underline mt-2 inline-flex items-center"
+                      aria-label={`View details for ${event.title}`}
+                    >
+                      View Event <FaArrowRight className="ml-1" />
+                    </Link>
                   </div>
-                ))}
+                </div>
+              ))}
           </div>
           <Link
             to="/events"
@@ -204,25 +228,30 @@ const HomePage = () => {
 
 
 
-        {/* <div className="my-8">
+        <div className="my-8">
           <h2 className="text-2xl font-bold mb-4">Latest Jobs</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {jobsData.map((job) => (
-              <div
-                key={job.$id}
-                className="bg-white shadow-md rounded-lg p-4"
-              >
-                <h3 className="text-xl font-semibold">{job.title}</h3>
-                <p className="text-gray-600 mt-2">
-                  {job.description?.substring(0, 100)}...
-                </p>
-                <Link
-                  to={`/jobs/${job.$id}`}
-                  className="text-blue-500 hover:underline mt-2 inline-flex items-center"
-                  aria-label={`View details for ${job.title}`}
-                >
-                  View Job <FaArrowRight className="ml-1" />
-                </Link>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {jobs.slice(0, 3).map((job, index) => (
+              <div key={index} className="bg-white shadow-lg rounded-lg p-6">
+                <img
+                  src={job.organization_logo}
+                  alt={job.organization}
+                  className="w-20 h-20 rounded-full mb-4"
+                />
+                <h2 className="text-xl font-semibold">{job.title}</h2>
+                <p className="text-gray-600">{job.organization}</p>
+                <p className="text-sm text-gray-500">{job.locations_derived[0].addressLocality}</p>
+                <div className="mt-4">
+                  <Link href={job.url}>
+                    <a
+                      className="inline-block text-blue-500 hover:text-blue-700 font-semibold"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Job
+                    </a>
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -232,7 +261,7 @@ const HomePage = () => {
           >
             See All Jobs
           </Link>
-        </div> */}
+        </div>
 
       </div>
     </>

@@ -38,7 +38,7 @@ const AdminPage = () => {
           />
           <button
             onClick={handleAddNews}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            className="bg-orange-500 text-white px-4 py-2 rounded-md"
           >
             Add
           </button>
