@@ -16,6 +16,7 @@ import ProtectedRoute1 from "./pages/ProtectedRoute1";
 
 import { account } from "./utils/appwrite"; // Ensure this points to your Appwrite setup
 import EventDetailPage from "./pages/EventDetailPage";
+import ChatRoom from "./pages/ChatRoom";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -47,7 +48,10 @@ const App = () => {
         <Route path="/events/:id" element={<ProtectedRoute element={<EventDetailPage />} />} />
 
         <Route path="/jobs" element={<ProtectedRoute element={<JobPage />} />} />
-        <Route path="/news/:id" element={<ProtectedRoute element={<NewsDetailPage />} />} />
+
+        <Route path="/jobs" element={<ProtectedRoute element={<JobPage />} />} />
+
+        <Route path="/chatroom" element={<ProtectedRoute element={<ChatRoom />} />} />
 
         {/* Admin Route */}
         {user?.email === "admin@gmail.com" && (

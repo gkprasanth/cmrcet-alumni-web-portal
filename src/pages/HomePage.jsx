@@ -8,6 +8,23 @@ import { Carousel } from "react-responsive-carousel";
 import { databases } from "../utils/appwrite";
 import { Query } from "appwrite";
 
+
+const galleryImages = [
+  "https://media.licdn.com/dms/image/v2/D4D1BAQFj_ZcvIT0pag/company-background_10000/company-background_10000/0/1657040178535/cmrcetofficial_cover?e=2147483647&v=beta&t=AeOQaUzRTZTMm1vD38daOFnrum890xIIUUlojaN6JNk",
+  "https://pbs.twimg.com/media/EEBR7DvU0AEW6Xa.jpg",
+  "https://i.ytimg.com/vi/ivEfMWIQGuU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDATIv_NwI9p_4OrVQarvYNIz3l2w",
+  "https://images.shiksha.com/mediadata/images/1547212205phpW9TLlK.jpeg",
+  "https://pbs.twimg.com/media/EP8OJfdX0AAKcxi.jpg",
+  "https://media.licdn.com/dms/image/v2/C4D22AQEqyWa6udcGBg/feedshare-shrink_800/feedshare-shrink_800/0/1652538566284?e=2147483647&v=beta&t=iRAf9_v_760i9AZ15DF6PsRwygWoF-bcpBQthj2f4xk",
+  "https://images.shiksha.com/mediadata/images/1547212073phpKzuE58.jpeg",
+  "https://images.shiksha.com/mediadata/images/1547212463phpcoivol.jpeg",
+  "https://media.licdn.com/dms/image/v2/D4E22AQF1yqDpqkz7GQ/feedshare-shrink_800/feedshare-shrink_800/0/1696863048441?e=2147483647&v=beta&t=XIAkRWAczl7Kv4awDQsNtBBQvo7RtsvgB17jRU_jSvM"
+
+];
+
+
+
+
 const HomePage = () => {
   const [newsData, setNewsData] = useState([]);
   const [eventsData, setEventsData] = useState([]);
@@ -170,6 +187,53 @@ const HomePage = () => {
             See More Events
           </Link>
         </div>
+
+        <div className="my-8">
+          <h2 className="text-2xl font-bold mb-4">Gallery</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {galleryImages.map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt={`Gallery image ${index + 1}`}
+                className="w-full h-48 object-cover rounded-lg shadow-md"
+              />
+            ))}
+          </div>
+        </div>
+
+
+
+        {/* <div className="my-8">
+          <h2 className="text-2xl font-bold mb-4">Latest Jobs</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {jobsData.map((job) => (
+              <div
+                key={job.$id}
+                className="bg-white shadow-md rounded-lg p-4"
+              >
+                <h3 className="text-xl font-semibold">{job.title}</h3>
+                <p className="text-gray-600 mt-2">
+                  {job.description?.substring(0, 100)}...
+                </p>
+                <Link
+                  to={`/jobs/${job.$id}`}
+                  className="text-blue-500 hover:underline mt-2 inline-flex items-center"
+                  aria-label={`View details for ${job.title}`}
+                >
+                  View Job <FaArrowRight className="ml-1" />
+                </Link>
+              </div>
+            ))}
+          </div>
+          <Link
+            to="/jobs"
+            className="inline-block mt-6 text-white bg-blue-600 px-6 py-3 rounded-lg hover:bg-blue-700"
+          >
+            See All Jobs
+          </Link>
+        </div> */}
+
       </div>
     </>
   );
