@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-blue-900 text-white">
       <div className="max-w-7xl mx-auto py-10 px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Logo and About Section */}
+         
         <div className="space-y-4">
           <h2 className="text-2xl font-bold">Alumni Connect</h2>
           <p className="text-gray-300">
@@ -12,7 +12,7 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Quick Links */}
+        
         <div className="space-y-4">
           <h3 className="text-xl font-bold">Quick Links</h3>
           <ul className="space-y-2">
@@ -31,21 +31,21 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Contact Information */}
+         
         <div className="space-y-4">
           <h3 className="text-xl font-bold">Contact Us</h3>
           <ul className="space-y-2">
             <li>
               <span className="font-medium">Email:</span>{" "}
               <a href="mailto:info@alumniconnect.com" className="hover:text-blue-400 transition">
-                info@alumniconnect.com
+              principal@cmrcet.ac.in 
               </a>
             </li>
             <li>
-              <span className="font-medium">Phone:</span> +1 (123) 456-7890
+              <span className="font-medium">Phone:</span> +91 9248727210
             </li>
             <li>
-              <span className="font-medium">Address:</span> 123 Alumni Lane, City, Country
+              <span className="font-medium">Address:</span> CMR College of Engineering & Technology Kandlakoya(v), Medchal Road Hyderabad, Telangana, India - 501401, 
             </li>
           </ul>
           <div className="flex space-x-4 mt-4">

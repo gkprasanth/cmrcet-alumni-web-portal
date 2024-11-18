@@ -4,22 +4,22 @@ export const eventsData = [
       title: "Annual Tech Fest",
       venue: "College Auditorium",
       description: "Join us for the annual tech fest, featuring keynote speakers...",
-      image: "/images/event1.jpg",
-      link: "/events/1",
+      image: "https://shorturl.at/JVfpl",
+      
     },
     {
       title: "Sports Meet",
       venue: "Sports Ground",
       description: "Come and support your college teams in the annual sports meet.",
-      image: "/images/event2.jpg",
-      link: "/events/2",
+      image: "https://changingtomorrow.in/wp-content/uploads/2024/01/5.jpeg",
+    
     },
     {
       title: "Cultural Night",
       venue: "Main Hall",
       description: "A night of cultural performances by students and alumni.",
-      image: "/images/event3.jpg",
-      link: "/events/3",
+      image: "https://lesroches.edu/wp-content/uploads/2019/10/Celebrating-diversity-at-the-77th-Les-Roches-Cultural-Night.jpg",
+ 
     },
   ];
   

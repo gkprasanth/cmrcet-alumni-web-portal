@@ -1,5 +1,5 @@
 // src/App.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Navbar from "./pages/Navbar";
@@ -9,9 +9,31 @@ import NewsPage from "./pages/NewsPage";
 import EventPage from "./pages/EventPage";
 import JobPage from "./pages/JobsPage";
 import Footer from "./pages/Footer";
-import ProtectedRoute from "./pages/ProtectedRoute"; // Import ProtectedRoute
+import ProtectedRoute from "./pages/ProtectedRoute";
+import NewsDetailPage from "./pages/NewsDetailPage";
+import AdminPage from "./pages/Adminpage";
+import ProtectedRoute1 from "./pages/ProtectedRoute1";
+
+import { account } from "./utils/appwrite"; // Ensure this points to your Appwrite setup
+import EventDetailPage from "./pages/EventDetailPage";
 
 const App = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const currentUser = await account.get(); // Get current logged-in user
+        setUser(currentUser); // Set user object
+      } catch (error) {
+        console.error("Error fetching user:", error);
+        setUser(null); // Set to null if no user is logged in
+      }
+    };
+
+    fetchUser();
+  }, []);
+
   return (
     <Router>
       <Navbar />
@@ -19,21 +41,18 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
- 
+        <Route path="/news" element={<ProtectedRoute element={<NewsPage />} />} />
+        <Route path="/events" element={<ProtectedRoute element={<EventPage />} />} />
 
-        <Route
-          path="/events"
-          element={<ProtectedRoute element={<NewsPage />} />}
-        />
-       
-        <Route
-          path="/events"
-          element={<ProtectedRoute element={<EventPage />} />}
-        />
-        <Route
-          path="/jobs"
-          element={<ProtectedRoute element={<JobPage />} />}
-        />
+        <Route path="/events/:id" element={<ProtectedRoute element={<EventDetailPage />} />} />
+
+        <Route path="/jobs" element={<ProtectedRoute element={<JobPage />} />} />
+        <Route path="/news/:id" element={<ProtectedRoute element={<NewsDetailPage />} />} />
+
+        {/* Admin Route */}
+        {user?.email === "admin@gmail.com" && (
+          <Route path="/admin" element={<AdminPage />} />
+        )}
       </Routes>
       <Footer />
     </Router>
