@@ -1,39 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+// Static job data (from jobsData)
+export const jobsData = [
+  {
+    title: "Software Developer",
+    company: "Google",
+    description: "Looking for passionate software developers to join our internship program.",
+    link: "https://www.google.com/about/careers/applications/jobs/results/138164744899961542-staff-software-engineer-infrastructure-google-cloud",
+  },
+  {
+    title: "Marketing Intern",
+    company: "Market Solutions",
+    description: "We are hiring marketing interns to work on exciting campaigns.",
+    link: "https://shorturl.at/lHL8l",
+  },
+  {
+    title: "Full-time Java Developer",
+    company: "WebDev Co.",
+    description: "We are hiring full-time Java developers to work on cutting-edge projects.",
+    link: "https://shorturl.at/2S74f",
+  },
+];
+
 const JobPage = () => {
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState(jobsData);
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [totalPages, setTotalPages] = useState(1); // If you plan to implement pagination for the static data
+  const [loading, setLoading] = useState(false); // Assuming no API call is needed
 
-  useEffect(() => {
-    const fetchJobs = async () => {
-      setLoading(true);
-      const url = `https://job-posting-feed-api.p.rapidapi.com/active-ats-meili?title_search=false&description_type=html&page=${page}&hitsPerPage=10`;
-      const options = {
-        method: 'GET',
-        headers: {
-          'x-rapidapi-key': '74e08c8d1dmshc3c3b3d2a461171p1baf7fjsnd8f3e40e57e1',
-          'x-rapidapi-host': 'job-posting-feed-api.p.rapidapi.com',
-        },
-      };
-
-      try {
-        const response = await fetch(url, options);
-        const data = await response.json();
-        setJobs(data.hits); // Assuming `hits` contains the job data
-        setTotalPages(Math.ceil(data.nbHits / 10)); // Calculate total pages based on number of hits
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchJobs();
-  }, [page]);
-
+  // Pagination logic (if needed)
   const handleNextPage = () => {
     if (page < totalPages) setPage(page + 1);
   };
@@ -43,31 +39,24 @@ const JobPage = () => {
   };
 
   return (
-
-
-    <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold text-center mb-8">All Job Listings</h1>
+    <div className="container mx-auto p-6">
+      <h1 className="text-4xl font-semibold text-center text-gray-900 mb-12">All Job Listings</h1>
 
       {loading ? (
-        <div className="text-center text-lg">Loading...</div>
+        <div className="text-center text-lg text-gray-600">Loading...</div>
       ) : (
         <div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {jobs.map((job, index) => (
-              <Link to={job.url}  >
-                <div key={index} className="bg-white shadow-lg rounded-lg p-6">
-                  <img
-                    src={job.organization_logo}
-                    alt={job.organization}
-                    className="w-20 h-20 rounded-full mb-4"
-                  />
-                  <h2 className="text-xl font-semibold">{job.title}</h2>
-                  <p className="text-gray-600">{job.organization}</p>
-                  <p className="text-sm text-gray-500">{job.locations_derived[0].addressLocality}</p>
-                  <div className="mt-4">
+              <Link key={index} to={job.link}>
+                <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl h-full">
+                  <h2 className="text-xl font-semibold text-gray-800 mb-2">{job.title}</h2>
+                  <p className="text-gray-600 font-medium mb-4">{job.company}</p>
+                  <p className="text-sm text-gray-500 mb-6">{job.description}</p>
+                  <div className="mt-auto">
                     <a
-                      href={job.url}
-                      className="inline-block text-blue-500 hover:text-blue-700 font-semibold"
+                      href={job.link}
+                      className="inline-block text-blue-500 font-semibold hover:text-blue-700 transition-colors"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -84,17 +73,17 @@ const JobPage = () => {
             <button
               onClick={handlePreviousPage}
               disabled={page === 1}
-              className="bg-orange-500 text-white py-2 px-6 rounded-full hover:bg-blue-600 disabled:bg-gray-300"
+              className="bg-orange-500 text-white py-2 px-6 rounded-full hover:bg-orange-600 disabled:bg-gray-300 transition-colors"
             >
               Previous
             </button>
-            <span className="text-lg">
+            <span className="text-lg text-gray-700">
               Page {page} of {totalPages}
             </span>
             <button
               onClick={handleNextPage}
               disabled={page === totalPages}
-              className="bg-orange-500 text-white py-2 px-6 rounded-full hover:bg-blue-600 disabled:bg-gray-300"
+              className="bg-orange-500 text-white py-2 px-6 rounded-full hover:bg-orange-600 disabled:bg-gray-300 transition-colors"
             >
               Next
             </button>
@@ -102,7 +91,6 @@ const JobPage = () => {
         </div>
       )}
     </div>
-
   );
 };
 

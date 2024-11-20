@@ -25,22 +25,22 @@ export const eventsData = [
   
   export const jobsData = [
     {
-      title: "Software Developer Internship",
-      company: "Tech Corp",
+      title: "Software Developer",
+      company: "Google",
       description: "Looking for passionate software developers to join our internship program.",
-      link: "/jobs/1",
+      link: "https://www.google.com/about/careers/applications/jobs/results/138164744899961542-staff-software-engineer-infrastructure-google-cloud",
     },
     {
       title: "Marketing Intern",
       company: "Market Solutions",
       description: "We are hiring marketing interns to work on exciting campaigns.",
-      link: "/jobs/2",
+      link: "https://g.co/kgs/r3RWXrs",
     },
     {
       title: "Full-time Java Developer",
       company: "WebDev Co.",
       description: "We are hiring full-time Java developers to work on cutting-edge projects.",
-      link: "/jobs/3",
+      link: "https://g.co/kgs/c1oRkF9",
     },
   ];
   
@@ -64,4 +64,6 @@ export const eventsData = [
       link: "/news/3",
     },
   ];
+
+  
   

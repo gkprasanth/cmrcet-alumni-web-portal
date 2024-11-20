@@ -7,6 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carous
 import { Carousel } from "react-responsive-carousel";
 import { databases } from "../utils/appwrite";
 import { Query } from "appwrite";
+import { jobsData } from "./JobsPage";
 
 
 const galleryImages = [
@@ -30,7 +31,7 @@ const HomePage = () => {
   const [eventsData, setEventsData] = useState([]);
   const [isLoadingNews, setIsLoadingNews] = useState(true);
   const [isLoadingEvents, setIsLoadingEvents] = useState(true);
-  const [jobs, setJobs] = useState([]);
+
 
   // Fetch news data
   useEffect(() => {
@@ -229,41 +230,40 @@ const HomePage = () => {
 
 
         <div className="my-8">
-          <h2 className="text-2xl font-bold mb-4">Latest Jobs</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* {jobs.slice(0, 3).map((job, index) => (
-              <div key={index} className="bg-white shadow-lg rounded-lg p-6">
-                <img
-                  src={job.organization_logo}
-                  alt={job.organization}
-                  className="w-20 h-20 rounded-full mb-4"
-                />
-                <h2 className="text-xl font-semibold">{job.title}</h2>
-                <p className="text-gray-600">{job.organization}</p>
-                <p className="text-sm text-gray-500">{job.locations_derived[0].addressLocality}</p>
-                <div className="mt-4">
-                  <Link href={job.url}>
-                    <a
-                      className="inline-block text-blue-500 hover:text-blue-700 font-semibold"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View Job
-                    </a>
-                  </Link>
-                </div>
-              </div>
-            ))} */}
-
-            <p className="text-red-500" >Jobs fetching failed, try after some time!!</p>
+  <h2 className="text-2xl font-bold mb-4">Latest Jobs</h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    {isLoadingNews
+      ? Array.from({ length: 3 }).map((_, index) => (
+        <SkeletonCard key={index} />
+      ))
+      : jobsData.slice(0, 3).map((job, index) => (
+        <div key={index} className="bg-white shadow-md rounded-lg p-6 h-full border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+          <h3 className="text-xl font-semibold text-gray-800 mb-2">{job.title}</h3>
+          <p className="text-gray-600 text-sm mb-4">{job.organization}</p>
+          <p className="text-gray-500 text-sm mb-4">{job.description}</p>
+          
+          <div className="mt-auto">
+            <Link
+              to={job.link}
+              className="inline-block text-blue-500 font-semibold hover:text-blue-700 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Job
+            </Link>
           </div>
-          <Link
-            to="/jobs"
-            className="inline-block mt-6 text-white bg-orange-600 px-6 py-3 rounded-lg hover:bg-blue-700"
-          >
-            See All Jobs
-          </Link>
         </div>
+      ))}
+  </div>
+
+  {/* See All Jobs Link */}
+  <Link
+    to="/jobs"
+    className="inline-block mt-6 text-white bg-orange-600 px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+  >
+    See All Jobs
+  </Link>
+</div>
 
       </div>
     </>
