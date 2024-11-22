@@ -65,5 +65,89 @@ export const eventsData = [
     },
   ];
 
+ export const achievementsData= [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "batch": "2010",
+      "department": "Computer Science",
+      "achievements": [
+        {
+          "title": "Founder of TechWave Inc.",
+          "description": "Established a startup specializing in AI-driven healthcare solutions, currently valued at $10M.",
+          "year": 2020,
+          "category": "Entrepreneurship"
+        },
+        {
+          "title": "Top Innovator Award",
+          "description": "Recognized for outstanding contribution to AI research at the Global Tech Summit.",
+          "year": 2019,
+          "category": "Awards"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "batch": "2015",
+      "department": "Mechanical Engineering",
+      "achievements": [
+        {
+          "title": "Published Research in Renewable Energy",
+          "description": "Co-authored a paper on innovative solar panel technologies in the Journal of Renewable Energy.",
+          "year": 2018,
+          "category": "Research"
+        },
+        {
+          "title": "Green Engineer Award",
+          "description": "Awarded for pioneering sustainable engineering solutions in urban development.",
+          "year": 2021,
+          "category": "Awards"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Aarav Gupta",
+      "batch": "2008",
+      "department": "Civil Engineering",
+      "achievements": [
+        {
+          "title": "Built Landmark Bridge",
+          "description": "Led the construction of the CityLink Bridge, an architectural marvel connecting two major cities.",
+          "year": 2015,
+          "category": "Professional"
+        },
+        {
+          "title": "Community Builder Award",
+          "description": "Recognized for efforts in rebuilding housing infrastructure post-natural disasters.",
+          "year": 2017,
+          "category": "Community Service"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Emily Carter",
+      "batch": "2012",
+      "department": "Biotechnology",
+      "achievements": [
+        {
+          "title": "Patent for Cancer Detection Kit",
+          "description": "Developed a low-cost, rapid diagnostic kit for early-stage cancer detection.",
+          "year": 2019,
+          "category": "Innovation"
+        },
+        {
+          "title": "National Biotechnology Award",
+          "description": "Honored for groundbreaking research in genetic engineering.",
+          "year": 2020,
+          "category": "Awards"
+        }
+      ]
+    }
+  ]
+  
+
   
   

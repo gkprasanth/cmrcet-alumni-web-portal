@@ -17,6 +17,7 @@ import ProtectedRoute1 from "./pages/ProtectedRoute1";
 import { account } from "./utils/appwrite"; // Ensure this points to your Appwrite setup
 import EventDetailPage from "./pages/EventDetailPage";
 import ChatRoom from "./pages/ChatRoom";
+import AchievementsPage from "./pages/AchievementsPage";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -47,7 +48,7 @@ const App = () => {
         <Route path="/news" element={<ProtectedRoute element={<NewsPage />} />} />
         <Route path="/news/:id" element={<ProtectedRoute element={<NewsDetailPage />} />} />
 
-
+        <Route path="/achievements"  element={<ProtectedRoute element={<AchievementsPage />} />} />
         <Route path="/events" element={<ProtectedRoute element={<EventPage />} />} />
 
         <Route path="/events/:id" element={<ProtectedRoute element={<EventDetailPage />} />} />
