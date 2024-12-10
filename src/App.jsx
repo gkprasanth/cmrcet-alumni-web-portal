@@ -18,12 +18,13 @@ import { account } from "./utils/appwrite"; // Ensure this points to your Appwri
 import EventDetailPage from "./pages/EventDetailPage";
 import ChatRoom from "./pages/ChatRoom";
 import AchievementsPage from "./pages/AchievementsPage";
+import AchievementDetail from "./pages/AchievementDetail";
 
 const App = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-        document.cookie = "__vercel_live_token=value; path=/; SameSite=None; Secure";
+    document.cookie = "__vercel_live_token=value; path=/; SameSite=None; Secure";
 
     const fetchUser = async () => {
       try {
@@ -48,8 +49,8 @@ const App = () => {
         <Route path="/news" element={<ProtectedRoute element={<NewsPage />} />} />
         <Route path="/news/:id" element={<ProtectedRoute element={<NewsDetailPage />} />} />
 
-        <Route path="/achievements"  element={<ProtectedRoute element={<AchievementsPage />} />} />
-        <Route path="/events" element={<ProtectedRoute element={<EventPage />} />} />
+        <Route path="/achievement/:id" element={<AchievementDetail />} />       
+         <Route path="/events" element={<ProtectedRoute element={<EventPage />} />} />
 
         <Route path="/events/:id" element={<ProtectedRoute element={<EventDetailPage />} />} />
 

@@ -10,6 +10,11 @@ import { Query } from "appwrite";
 import { jobsData } from "./JobsPage";
 import { achievementsData } from "../utils/data";
 import logo from "../assets/cmr-logo.webp"
+import Carousel1 from "./Carousel";
+
+
+
+
 
 const galleryImages = [
   "https://media.licdn.com/dms/image/v2/D4D1BAQFj_ZcvIT0pag/company-background_10000/company-background_10000/0/1657040178535/cmrcetofficial_cover?e=2147483647&v=beta&t=AeOQaUzRTZTMm1vD38daOFnrum890xIIUUlojaN6JNk",
@@ -233,51 +238,18 @@ const HomePage = () => {
 
 
 
+          <div className="p-6">
+            <Carousel1   />
+          </div>
         <div className="my-8">
-  <h2 className="text-2xl font-bold mb-4">Achievements</h2>
-  <div className="grid md:grid-cols-3 gap-6">
-    {isLoadingAchievements
-      ? Array.from({ length: 3 }).map((_, index) => (
-          <SkeletonCard key={index} />
-        ))
-      : achievementsData
-          .flatMap((alumni) =>
-            alumni.achievements.map((achievement) => ({
-              ...achievement,
-              alumni, // Add the alumni info back to the achievement object
-            }))
-          )
-          .slice(0, 3) // Only render the first 3 achievements
-          .map((achievement, index) => (
-            <div
-              key={`${achievement.title}-${index}`}
-              className="bg-white shadow-md rounded-lg overflow-hidden"
-            >
-              <img
-                src={logo || "https://via.placeholder.com/150"}
-                alt={achievement.title || "Achievement Image"}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-xl font-semibold">{achievement.title}</h3>
-                <p className="text-gray-600 mt-2 line-clamp-2">
-                  {achievement.description}
-                </p>
-                <p className="text-sm text-gray-500 mt-1">
-                  <strong>Batch:</strong> {achievement.alumni.batch} |{" "}
-                  <strong>Department:</strong> {achievement.alumni.department}
-                </p>
-              </div>
-            </div>
-          ))}
-  </div>
-  <Link
-    to="/achievements"
-    className="inline-block mt-6 text-white bg-orange-600 px-6 py-3 rounded-lg hover:bg-blue-700"
-  >
-    See All Achievements
-  </Link>
-</div>
+          <h2 className="text-2xl font-bold mb-4">Achievements</h2>
+          <Link
+            to="/achievements"
+            className="inline-block mt-6 text-white bg-orange-600 px-6 py-3 rounded-lg hover:bg-blue-700"
+          >
+            See All Achievements
+          </Link>
+        </div>
 
 
 
