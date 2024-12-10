@@ -238,17 +238,12 @@ const HomePage = () => {
 
 
 
+        <div className="my-8">
+          <h2 className="text-2xl font-bold mb-4">Achievements</h2>
           <div className="p-6">
             <Carousel1   />
           </div>
-        <div className="my-8">
-          <h2 className="text-2xl font-bold mb-4">Achievements</h2>
-          <Link
-            to="/achievements"
-            className="inline-block mt-6 text-white bg-orange-600 px-6 py-3 rounded-lg hover:bg-blue-700"
-          >
-            See All Achievements
-          </Link>
+        
         </div>
 
 
