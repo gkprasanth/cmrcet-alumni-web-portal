@@ -21,6 +21,48 @@ export const jobsData = [
     description: "We are hiring full-time Java developers to work on cutting-edge projects.",
     link: "https://shorturl.at/2S74f",
   },
+  {
+    title: "Freelance Fresher",
+    company: "CNR EdTech",
+    description: "We are seeking dynamic and motivated individuals for the role of Hiring Freelancers Freshers. ",
+    link: "https://shorturl.at/TFdfq",
+  },
+
+  {
+    title: "Content Designing intern",
+    company: "BrainShala",
+    description: "We are seeking a Content Designing Intern to join our dynamic team. This part-time, remote internship is open to freshers with 0-1 year of experience ",
+    link: "https://shorturl.at/EnuEh",
+  },
+  {
+    title: "Bench Sales Recruiter",
+    company: "Fluxtek Solutions Inc",
+    description: "We are seeking a motivated Bench Sales Recruiter to join our IT staffing team. The recruiter will focus on marketing and placing bench candidates (H1B, OPT, CPT, GC, USC) to vendors and clients.",
+    link: "https://shorturl.at/QeNl2",
+  },
+
+  
+  {
+    title: "Technical Recruiter ",
+    company: "Google",
+    description: "We are seeking a Technical Recruiter to join our IT staffing team. The recruiter will focus on marketing and placing bench candidates (H1B, OPT, CPT, GC, USC) to vendors and clients.",
+    link: "https://shorturl.at/mkT7y",
+  },
+  {
+    title: "Digital Marketing Intern",
+    company: "IIT Academy",
+    description: "As a Digital Marketing Intern, you will play a crucial role in our dynamic marketing team, gaining hands-on experience in the exciting world of digital marketing.",
+    link: "https://shorturl.at/N59PI",
+  },
+
+
+  {
+    title: "Data Entry - LinkedIn Outbound",
+    company: "Frugal Testing",
+    description: "",
+    link: "https://tinyurl.com/ye9k45ep",
+  },
+
 ];
 
 const JobPage = () => {
